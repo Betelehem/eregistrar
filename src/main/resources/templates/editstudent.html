@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/homepage">eRegistral</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/newStudent">New student</a></li>
+            <li><a href="/listStudent">List</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container" id="wrap">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="/savestudent" method="post" th:object="${student}" accept-charset="utf-8" class="form" role="form">
+                <legend>New Student Registration Form</legend>
+
+
+                <div class="row">
+                    <input type="text" name="stid" th:field="*{studentId}" class="form-control input-lg" placeholder="Student Id"   />
+                    <span th:if="${#fields.hasErrors('studentId')}" th:errors="*{studentId}"
+                          class="alert alert-danger"></span>
+                </div>
+                </br>
+                <div class="row">
+                    <input type="text" name="stnum" th:field="*{studentNumber}" class="form-control input-lg" placeholder="Student Number"  />
+                    <span th:if="${#fields.hasErrors('studentNumber')}" th:errors="*{studentNumber}"
+                          class="alert alert-danger"></span>
+                </div>
+                </br>
+                <div class="row">
+                    <input type="text" name="firstName" th:field="*{firstName}" class="form-control input-lg" placeholder="First Name"   />
+                    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"
+                          class="alert alert-danger"></span>
+                </div>
+                <div class="row">
+                    <input type="text" name="middleName" th:field="*{middleName}" class="form-control input-lg" placeholder="Middle Name"   />
+                    <span th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"
+                          class="alert alert-danger"></span>
+                </div>
+                <div class="row">
+                    <input type="text" name="lastName" th:field="*{lastName}" class="form-control input-lg" placeholder="Last Name"   />
+                    <span th:if="${#fields.hasErrors('studentId')}" th:errors="*{lastName}"
+                          class="alert alert-danger"></span>
+                </div>
+                <div>
+                    <input type="text" name="gpa" th:field="*{cgpa}" class="form-control input-lg" placeholder="GPA"  />
+                    <span th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}"
+                          class="alert alert-danger"></span>
+                </div>
+
+
+                </br>
+                <div>
+                    <input type="text" name="gpa" th:field="*{enrollmentDate}" class="form-control input-lg" placeholder="Enrollment Date"  />
+                    <span th:if="${#fields.hasErrors('enrollmentDate')}" th:errors="*{enrollmentDate}"
+                          class="alert alert-danger"></span>
+                </div>
+
+
+
+                <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0">Is International</legend>
+
+                    <div class="col-sm-10">
+                        </br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="yes" name="gridRadios" id="gridRadios1" th:field="*{isInternational}" checked>
+
+                            <label class="form-check-label" for="gridRadios1">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" value="no" name="gridRadios" id="gridRadios2"  th:field="*{isInternational}">
+                            <label class="form-check-label" for="gridRadios2">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    </br>
+                </div>
+
+                <button  class="btn btn-lg btn-primary btn-block signup-btn" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="padding:1em;" class="container">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/homepage">eRegistral</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/newStudent">New student</a></li>
+                <li><a href="/listStudent">List</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div style="padding:1em">
+        <span style="font-size: 2em; color: #32a5e7;">Registered students</span>
+        <span style="float:right;">
+                <a class="btn btn-outline-primary btn-sm" href="/newStudent">Add New Student</a>
+            </span>
+    </div>
+
+    <!--    Table-->
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Student Number</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Middle Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">cgpa</th>
+            <th scope="col">Date Registered</th>
+            <th scope="col">International</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student,iterStat : ${students}">
+            <!--th:onclick="@{document.location='/elibrary/book/edit/{bookId}'(bookId=${book.bookId})}" -->
+            <th scope="row" th:text="${iterStat.count}"></th>
+            <td th:text="${student.studentNumber}"></td>
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.middleName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.cgpa}"></td>
+            <td th:text="${student.enrollmentDate}"></td>
+            <td th:text="${student.isInternational}"></td>
+
+
+            <td><a class="btn btn-outline-info btn-sm" th:href="@{'/editStudent/?studentId={studentId}'(studentId=${student.studentId})}">Edit</a></td>
+            <td>
+                <a class="btn btn-outline-danger btn-sm" th:href="@{'/deletestudents/?studentId={studentId}'(studentId=${student.studentId})}">Delete</a>
+                <!--                /eregister/student/delete/{studentId}-->
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
